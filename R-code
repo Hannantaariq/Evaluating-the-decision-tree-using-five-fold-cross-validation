@@ -1,0 +1,35 @@
+> source("classification_analysis.R")
+#Evaluate models trained on feature subset with cross validation
+> j48.performance.fsub <- cross.val(expression.df, class.vector, 5, "J48", TRUE)
+Fold 1 of 5 
+
+We're doing 126 complete permutations
+and randomly select 100 of them.
+
+Fold 2 of 5 
+
+We're doing 126 complete permutations
+and randomly select 100 of them.
+
+Fold 3 of 5 
+
+We're doing 252 complete permutations
+and randomly select 100 of them.
+
+Fold 4 of 5 
+
+We're doing 210 complete permutations
+and randomly select 100 of them.
+
+Fold 5 of 5 
+
+We're doing 210 complete permutations
+and randomly select 100 of them.
+
+> j48.confusion.matrix.fsub <- matrix(j48.performance.fsub, nrow=2)
+> rownames(j48.confusion.matrix.fsub) <- c("Predicted noDox", "Predicted Dox")
+> colnames(j48.confusion.matrix.fsub) <- c("noDox", "Dox")
+> print(j48.confusion.matrix.fsub)
+                noDox Dox
+Predicted noDox     5   0
+Predicted Dox       1   6
